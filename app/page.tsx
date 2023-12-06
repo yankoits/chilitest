@@ -15,9 +15,9 @@ export default async function Home({
 
   const totalPages = await getProductsPages(query)
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="min-h-screen max-w-2xl flex flex-col items-stretch justify-between py-6 sm:px-12 m-auto">
       <Search />
-      <Suspense>
+      <Suspense fallback={<div>Loading...</div>}>
         <ProductList query={query} currentPage={currentPage} />
       </Suspense>
       <Pagination totalPages={totalPages} />

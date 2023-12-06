@@ -18,7 +18,7 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
 
   return (
     <>
-      <div className="inline-flex">
+      <div className="inline-flex justify-center">
         {/* left arrow here */}
         <div className="flex -space-x-px">
           {allPages.map((page, index) => {
@@ -60,19 +60,19 @@ function PaginationNumber({
 }) {
   let className = "flex h-10 w-10 items-center justify-center text-sm border"
   if (position === "first" || position === "single") {
-    className += "rounded-l-md"
+    className += " rounded-l-md"
   }
   if (position === "last" || position === "single") {
-    className += "rounded-r-md"
+    className += " rounded-r-md"
   }
   if (position === "middle") {
-    className += "text-gray-300"
+    className += " text-gray-300"
   }
   if (!isActive && position !== "middle") {
-    className += "hover:bg-gray-100"
+    className += " hover:bg-gray-100"
   }
   if (isActive) {
-    className += "z-10 bg-blue-600 border-blue-600 text-white"
+    className += " z-10 bg-blue-600 border-blue-600 text-white"
   }
 
   return isActive || position === "middle" ? (
