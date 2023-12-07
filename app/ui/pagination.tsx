@@ -20,7 +20,7 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
 
   return (
     <>
-      <div className="inline-flex justify-center">
+      <div className="inline-flex justify-center pt-4">
         <div className="flex -space-x-px">
           {allPages.map((page, index) => {
             let position: "first" | "last" | "single" | "middle" | undefined

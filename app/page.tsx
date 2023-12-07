@@ -14,7 +14,7 @@ export default async function HomePage({
 
   const totalPages = await getProductsPages(query)
   return (
-    <main className="main-container items-stretch">
+    <main className="main-container items-stretch justify-start">
       <Search />
       <Suspense fallback={<div className="self-center pt-4 text-gray-600">Loading...</div>}>
         <ProductList query={query} currentPage={currentPage} />

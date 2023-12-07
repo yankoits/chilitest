@@ -18,7 +18,7 @@ export default async function ProductList({
   }
 
   return (
-    <ul className="flex-grow">
+    <ul>
       {products.map((prod) => (
         <li key={prod.id}>
           <ProductCard product={prod} />
