@@ -1,4 +1,5 @@
-// pagination code taken from nextjs course
+// pagination code taken from nextjs course: https://nextjs.org/learn/dashboard-app/
+
 export const generatePagination = (currentPage: number, totalPages: number) => {
     // If the total number of pages is 7 or less,
     // display all pages without any ellipsis.

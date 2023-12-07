@@ -19,3 +19,12 @@
 body {
   color: rgb(var(--foreground-rgb));
 }
+
+@layer components {
+  .btn-blue {
+    @apply flex items-center justify-center h-16 m-1 px-4 py-2 border border-blue-600 rounded-lg text-blue-600 hover:bg-blue-50 
+  }
+  .main-container {
+    @apply min-h-screen max-w-2xl flex flex-col py-6 sm:px-12 m-auto
+  }
+}

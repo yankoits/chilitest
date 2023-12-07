@@ -9,9 +9,9 @@ export default function Error({
 }) {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center">
-      <h2 className="text-center">Something went wrong! {error.message}</h2>
+      <h2 className="text-center p-2">Something went wrong! {error.message}</h2>
       <button
-        className="mt-4 rounded-md bg-blue-500 px-4 py-2 text-sm text-white transition-colors hover:bg-blue-400"
+        className="btn-blue"
         onClick={reset}
       >
         Try again

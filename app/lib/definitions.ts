@@ -9,7 +9,3 @@ export type Product = {
 export type ProductFull = Product & {
     description: string
 }
-
-export type DataError = {
-    error: string
-}

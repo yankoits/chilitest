@@ -1,6 +1,6 @@
 import { unstable_noStore as noStore } from 'next/cache'
 import { Product } from "@/app/lib/definitions"
-import { http } from "./http-request"
+import { http } from "@/app/lib/data/http-request"
 
 const productUrl = 'https://run.mocky.io/v3/b54fe93f-f5a1-426b-a76c-e43d246901fd'
 
@@ -16,15 +16,17 @@ export async function getFilteredProducts(query: string, currentPage: number): P
     noStore()
 
     const data = await http<{ products: Product[] }>(productUrl)
-    if ('error' in data) {
-        // error. TODO. памылку трэба б пракінуць?
-        return []
-    }
+        .catch(error => {
+            if (error instanceof Error) {
+                error.message = "Failed to fetch products."
+            }
+            throw error
+        })
+
     let products = data.products
     if (query !== '') {
         products = products.filter(prod => filterProducts(prod, query))
     }
-    
     return products.slice(offset, offset + ITEMS_PER_PAGE)
 }
 
@@ -32,17 +34,17 @@ export async function getProductsPages(query: string): Promise<number> {
     noStore()
 
     let pages = 1
-    const data = await http<{ products: Product[] }>(productUrl)
-    if ('error' in data) {
-        // error. TODO. памылку трэба б пракінуць?
-
-    }
-    else {
-        let products = data.products
-        if (query !== '') {
-            products = products.filter(prod => filterProducts(prod, query))
+    const data = await http<{ products: Product[] }>(productUrl).catch(error => {
+        if (error instanceof Error) {
+            error.message = "Failed to fetch product pages."
         }
-        pages = Math.ceil(products.length / ITEMS_PER_PAGE)
+        throw error
+    })
+
+    let products = data.products
+    if (query !== '') {
+        products = products.filter(prod => filterProducts(prod, query))
     }
+    pages = Math.ceil(products.length / ITEMS_PER_PAGE)
     return pages
 }

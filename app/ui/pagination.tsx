@@ -1,3 +1,5 @@
+// pagination code mostly taken from nextjs course: https://nextjs.org/learn/dashboard-app/
+
 "use client"
 import Link from "next/link"
 import { generatePagination } from "@/app/lib/utils"
@@ -19,7 +21,6 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
   return (
     <>
       <div className="inline-flex justify-center">
-        {/* left arrow here */}
         <div className="flex -space-x-px">
           {allPages.map((page, index) => {
             let position: "first" | "last" | "single" | "middle" | undefined
@@ -40,8 +41,6 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
             )
           })}
         </div>
-
-        {/* right arrow here */}
       </div>
     </>
   )
@@ -69,10 +68,10 @@ function PaginationNumber({
     className += " text-gray-300"
   }
   if (!isActive && position !== "middle") {
-    className += " hover:bg-gray-100"
+    className += " hover:bg-blue-50"
   }
   if (isActive) {
-    className += " z-10 bg-blue-600 border-blue-600 text-white"
+    className += " bg-blue-600 border-blue-600 text-white"
   }
 
   return isActive || position === "middle" ? (

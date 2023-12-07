@@ -1,6 +1,4 @@
-import { DataError } from "../definitions"
-
-export async function http<T>(url: string, config: RequestInit = {}): Promise<T | DataError> {
+export async function http<T>(url: string, config: RequestInit = {}): Promise<T> {
     try {
         const response = await fetch(url, config)
         if (!response.ok) {
@@ -9,10 +7,9 @@ export async function http<T>(url: string, config: RequestInit = {}): Promise<T 
         const body = await response.json()
         return body
     } catch (error) {
-        let message = 'Failed to fetch data.'
         if (error instanceof Error) {
-            message = `${message} Error: ${error.message}`
+            error.message = 'Failed to fetch data.'
         }
-        return { error: message }
+        throw error
     }
 }
